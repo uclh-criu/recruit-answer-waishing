@@ -21,20 +21,20 @@ In this project, I adopt docker-compose for quick deployment. 2 docker images an
 ![](docker.png)
 
 --------------
-###Choose & Design
+### Choose & Design
 
-####Frontend :
+#### Frontend :
 I choose ReactJs because the learning curve is low and popular.
 This is my first time writing ReactJs and I spent about 1-2 days learning and building up react frontend.
 
 The most exciting thing for me is how to design a user-friendly UI using the original requirement.
 Finally, I decided to add a basic search function(year Of Birth, sex At Birth and ethnicity, isFake)for the user to query the admission
 
-####Backend :
+#### Backend :
 My expertise is Java so I stuck with that. I use spring boot as a backend framework, JPA to Persistence Layer with SQL database.
 Junit + Mockito for TDD.
 
-####Database
+#### Database
 Embedded H2 database already bundles in spring boot. I think it is perfect for this kind of small/POC project.
 
 --------------
