@@ -34,7 +34,7 @@ Junit + Mockito for TDD.
 Embedded H2 database already bundles in spring boot. I think it is perfect for this kind of small/POC project.
 
 
-### Run Docker Compose to dockerize and start frontend and backend one off
+### Run Docker Compose to dockerize and start frontend and backend in one off
     docker compose up -d
 
 

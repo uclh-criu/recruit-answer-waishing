@@ -5,7 +5,7 @@ This backend project use java 11 and spring boot with embedded H2 database as Da
 The sample data (same as sample csv) will load into the H2 database when boot up the spring boot.
 We can find the sample data sql in src/resource/data.sql
 
---------------
+
 
 ###File structure:   
 - controller : Restful API 
@@ -14,7 +14,7 @@ We can find the sample data sql in src/resource/data.sql
 - repo          : Persistence Layer 
 - service       : Business Logic
 
---------------
+
 
 ###H2 console: 
 http://localhost:8080/h2-console (After boot up the springboot
@@ -23,7 +23,7 @@ http://localhost:8080/h2-console (After boot up the springboot
     username=sa    
     password=
 
---------------
+
 
 ###Admission Report API with basic search query:
 
@@ -59,22 +59,22 @@ http://localhost:8080/h2-console (After boot up the springboot
             ]
          }
       ]
---------------
+
 ###How to access the api
 1. You can use IDE (Eclipse/IntelliJ) to run this application directly, or
    use maven (mvn spring-boot:run) to run it
 2. Run the above endpoints by (Postman / Talend API Test)
 3. Done :)
---------------
+
 ### Test Case
 API Test -  to test restful API call
 Unit Test - mainly focusing on business logic (overlapped logic)
---------------
+
 ###Docker (backend standalone):
 
     docker build --tag=uclh-admission-api:latest .
     docker run -p8080:8080 uclh-admission-api:latest
---------------
+
 ###Test Coverage
 
     repo	100% (0/0)	100% (0/0)	100% (0/0)
