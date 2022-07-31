@@ -1,12 +1,9 @@
 # UCLH Admission Technical Test Overview
 
-
---------------
 ### Overview
 Thank you for inviting me to do this technical assignment.
 I enjoy it very much because it provides flexibility to explore different technologies to complete it.
 
---------------
 
 ### System Architecture
 This project has 3 tier architecture .frontend, backend and database.
@@ -20,7 +17,6 @@ In this project, I adopt docker-compose for quick deployment. 2 docker images an
 
 ![](docker.png)
 
---------------
 ### Choose & Design
 
 #### Frontend :
@@ -37,12 +33,10 @@ Junit + Mockito for TDD.
 #### Database
 Embedded H2 database already bundles in spring boot. I think it is perfect for this kind of small/POC project.
 
---------------
 
 ### Run Docker Compose to dockerize and start frontend and backend one off
     docker compose up -d
 
---------------
 
 ### Technical Detail
 [Backend](backend/README.md)
