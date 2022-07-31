@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class Admission {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @Getter @Setter  private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

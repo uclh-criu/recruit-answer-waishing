@@ -2,21 +2,17 @@ package org.uclh.uclhadmission.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.uclh.uclhadmission.model.PatientAdmission;
 import org.uclh.uclhadmission.model.PatientInfo;
-import org.uclh.uclhadmission.model.entity.Admission;
-import org.uclh.uclhadmission.model.entity.Patient;
-import org.uclh.uclhadmission.service.AdmissionService;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

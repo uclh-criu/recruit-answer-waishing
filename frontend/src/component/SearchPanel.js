@@ -47,7 +47,7 @@ export const SearchPanel = ({onChangeForm , fetchAdmissionReport}) => {
                                 />
                             </div>
                             <div className="searchElement">
-                                <Button type="button" onClick= {(e) => fetchAdmissionReport()} className="btn btn-danger">search</Button>
+                                <Button type="button" onClick= {() => fetchAdmissionReport()} className="btn btn-danger">search</Button>
                             </div>
                         </div>
 

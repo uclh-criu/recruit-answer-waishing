@@ -31,7 +31,7 @@ export const PatientInfos = ({patientInfos}) => {
                 <td>{patientInfo.sexAtBirth}</td>
                 <td>{patientInfo.ethnicity}</td>
                 <td>
-                    <Button type="button" onClick={(e) => hanldeClick(patientInfo.admissions)} className="btn btn-warning">Admission Detail</Button>
+                    <Button type="button" onClick={() => hanldeClick(patientInfo.admissions)} className="btn btn-warning">Admission Detail</Button>
                 </td>
             </tr>
         )

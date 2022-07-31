@@ -17,8 +17,8 @@ public class AdmissionController {
 
     @GetMapping(value = "", produces = "application/json")
     @CrossOrigin(origins = "http://localhost:3000")
-    /**
-     * Get Admission Report Restful API Controller
+    /*
+      Get Admission Report Restful API Controller
      */
     public @ResponseBody
     List<PatientInfo>  getAdmissionReport(@RequestParam(name = "yearOfBirth",defaultValue = "ALL") String yearOfBirth,

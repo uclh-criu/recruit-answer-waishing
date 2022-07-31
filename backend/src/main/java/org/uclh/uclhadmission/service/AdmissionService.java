@@ -48,7 +48,7 @@ public class AdmissionService {
             if(!ObjectUtils.isEmpty(ethnicity) && !"ALL".equalsIgnoreCase(ethnicity))
                 predicates.add(criteriaBuilder.equal(root.get("ethnicity"), ethnicity));
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
        return getAdmissionListByPatientsAndisOverlapped(patients, isFake);
     }
@@ -98,7 +98,7 @@ public class AdmissionService {
     /**
      * Check provided datetime have any overlapped data by datetime level
      * @param date {@link LocalDateTime} datetime to compare provided admissionList
-     * @param {@link List}<{@link Admission} > admissionList
+     * @param admissionList {@link List}<{@link Admission} > admissionList
      * @return {@link Integer} overlap counter
      */
     public Integer overlap(LocalDateTime date, List<Admission> admissionList) {

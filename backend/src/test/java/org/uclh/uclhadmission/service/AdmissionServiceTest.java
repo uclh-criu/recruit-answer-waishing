@@ -14,9 +14,11 @@ import org.uclh.uclhadmission.repo.PatientRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
+import static java.util.Optional.ofNullable;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -98,11 +100,11 @@ public class AdmissionServiceTest {
         admissionList.add(new Admission(36L, getPatient(17L), "2008-07-29", "2008-07-29 22:20:00", "2008-07-29", "2008-07-29 23:30:00", "Outpatient", "Discharged Alive"));
         admissionList.add(new Admission(37L, getPatient(17L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
 
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
     }
 
     private Patient getPatient(Long id) {
-        return patientList.stream().filter(p -> p.getId().equals(id)).findAny().get();
+        return Optional.of(patientList.stream().filter(p -> p.getId().equals(id)).findAny()).get().orElse(null);
     }
 
     private List<Admission> getAdmissionByPatientId(Long id) {
@@ -114,7 +116,6 @@ public class AdmissionServiceTest {
         when(patientRepository.findAll(any(Specification.class))).thenReturn(patientList);
         List<PatientInfo> resultList = admissionService.getAdmissionReport("ALL", "ALL", "ALL", Boolean.FALSE);
         assertThat(resultList).hasSize(18);
-        // assertEquals(1L, resultList.stream().filter(p -> p.getPatientId() == 10L).count());
     }
 
     @Test
@@ -126,7 +127,7 @@ public class AdmissionServiceTest {
     }
 
     @Test
-    /**
+    /*
      * No Duplicate Admission data
      * datetime1:         |------|
      * datetime2:                     |------|
@@ -134,14 +135,14 @@ public class AdmissionServiceTest {
     public void isAdmissionOverlapped_noOverlap_case1() {
         admissionList.add(new Admission(40L, getPatient(18L), "2001-08-10", "2001-08-10 20:09:00", "2001-08-11", "2001-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(41L, getPatient(18L), "2002-08-10", "2002-08-10 20:09:00", "2002-08-11", "2002-08-11 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
 
         assertEquals(false, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * No Duplicate Admission data
      * datetime1:         |------|
      * datetime2:                     |------|
@@ -152,7 +153,7 @@ public class AdmissionServiceTest {
         admissionList.add(new Admission(41L, getPatient(18L), "2002-08-10", "2002-08-10 20:09:00", "2002-08-11", "2002-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(42L, getPatient(18L), "2003-08-10", "2003-08-10 20:09:00", "2003-08-11", "2003-08-11 09:30:00", "ICU", "Hospice"));
 
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         //when(admissionRepository.findAll()).thenReturn(admissionList);
 
@@ -160,7 +161,7 @@ public class AdmissionServiceTest {
     }
 
     @Test
-    /**
+    /*
      * Duplicate Admission data
      * datetime1:         |------|
      * datetime2:         |------|
@@ -168,7 +169,7 @@ public class AdmissionServiceTest {
     public void isAdmissionOverlapped_duplicate_case1() {
         admissionList.add(new Admission(38L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(39L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         //  when(admissionRepository.findAll()).thenReturn(admissionList);
 
@@ -176,7 +177,7 @@ public class AdmissionServiceTest {
     }
 
     @Test
-    /**
+    /*
      * 2 Duplicate Admission data with one no overlap admission data
      * datetime1:         |------|
      * datetime2:                     |------|
@@ -187,14 +188,14 @@ public class AdmissionServiceTest {
         admissionList.add(new Admission(40L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(41L, getPatient(18L), "2001-08-10", "2001-08-10 20:09:00", "2001-08-11", "2001-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(42L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * 2 Duplicate Admission data with one overlap admission data
      */
     public void isAdmissionOverlapped_duplicate_case3() {
@@ -202,15 +203,13 @@ public class AdmissionServiceTest {
         admissionList.add(new Admission(40L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(41L, getPatient(18L), "2018-08-15", "2018-08-15 20:09:00", "2018-08-16", "2018-08-16 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(42L, getPatient(18L), "2018-08-10", "2018-08-10 20:09:00", "2018-08-11", "2018-08-11 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
-
-        //when(admissionRepository.findAll()).thenReturn(admissionList);
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * 2 Admission data and 1 admission data is within another time period
      * datetime1:         |-------------|
      * datetime2:            |------|
@@ -219,14 +218,13 @@ public class AdmissionServiceTest {
         patientList.add(new Patient(18L, "Law", "M", "Chinese", "1981", "3", "15", "1981-03-15 21:46:00", "2018-08-11 09:30:00"));
         admissionList.add(new Admission(43L, getPatient(18L), "2018-08-01", "2018-08-01 20:09:00", "2018-09-01", "2018-09-01 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(44L, getPatient(18L), "2018-08-15", "2018-08-15 20:09:00", "2018-08-20", "2018-08-20 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
-        //when(admissionRepository.findAll()).thenReturn(admissionList);
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * 2 Admission data and 1 admission data is within another time period
      * datetime1:            |------|
      * datetime2:         |-------------|
@@ -235,13 +233,13 @@ public class AdmissionServiceTest {
         patientList.add(new Patient(18L, "Law", "M", "Chinese", "1981", "3", "15", "1981-03-15 21:46:00", "2018-08-11 09:30:00"));
         admissionList.add(new Admission(45L, getPatient(18L), "2018-08-15", "2018-08-15 20:09:00", "2018-08-20", "2018-08-20 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(46L, getPatient(18L), "2018-08-01", "2018-08-01 20:09:00", "2018-09-01", "2018-09-01 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * 2 Admission data and 1 admission data is overlap another time period
      * datetime1:         |-------------|
      * datetime2:                |------------|
@@ -250,13 +248,13 @@ public class AdmissionServiceTest {
         patientList.add(new Patient(18L, "Law", "M", "Chinese", "1981", "3", "15", "1981-03-15 21:46:00", "2018-08-11 09:30:00"));
         admissionList.add(new Admission(43L, getPatient(18L), "2018-08-01", "2018-08-01 20:09:00", "2018-09-01", "2018-09-01 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(44L, getPatient(18L), "2018-08-15", "2018-08-15 20:09:00", "2018-09-20", "2018-09-20 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * 2 Admission data and 1 admission data is overlap another time period
      * datetime1:                |------------|
      * datetime2:         |-------------|
@@ -265,13 +263,13 @@ public class AdmissionServiceTest {
         patientList.add(new Patient(18L, "Law", "M", "Chinese", "1981", "3", "15", "1981-03-15 21:46:00", "2018-08-11 09:30:00"));
         admissionList.add(new Admission(40L, getPatient(18L), "2018-08-15", "2001-08-15 20:09:00", "2001-08-16", "2018-09-16 09:30:00", "ICU", "Hospice"));
         admissionList.add(new Admission(40L, getPatient(18L), "2018-08-01", "2018-08-01 20:09:00", "2018-09-01", "2018-09-01 09:30:00", "ICU", "Hospice"));
-        patientList.stream().forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
+        patientList.forEach(p -> p.setAdmissions(getAdmissionByPatientId(p.getId())));
 
         assertEquals(true, admissionService.isAdmissionOverlapped(getAdmissionByPatientId(18L)));
     }
 
     @Test
-    /**
+    /*
      * Sample Addmission Data
      * Patient 10 have fake admission only
      * This case is blind test run for any abnormal behavior
