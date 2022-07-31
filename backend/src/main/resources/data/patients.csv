@@ -1,0 +1,18 @@
+patient_id,full_name,sex_at_birth,ethnicity,year_of_birth,month_of_birth,day_of_birth,birth_datetime,death_datetime
+1,Rufus Hirst,M,Black African,1990,12,10,1990-12-10 10:20:00,
+2,Allana Farmer,F,Caribbean,1958,5,10,1958-05-10 08:10:00,
+3,Paloma Barrow,F,White British,1972,6,11,1972-06-11 23:16:00,
+4,Esmay Cross,M,White British,1990,2,25,1990-02-25 15:50:00,2020-11-26 13:09:00
+5,Wolf Yoder,M,Other Mixed,1940,8,28,1940-08-28 00:00:00,2000-03-18 20:21:00
+6,Rosa Eddison,F,Asian Mixed,2003,11,30,2003-11-30 20:18:00,
+7,Bruno Wallis,,Asian Mixed,2003,10,31,2003-10-31 08:45:00,
+8,Roberto Stokes,,Caribbean,2019,12,1,2019-12-01 17:30:00,
+9,Joao Soto,M,Black African,1996,3,21,1996-03-21 12:30:00,
+10,Jodi Serrano,M,Other White,1996,4,4,1996-04-04 13:00:00,
+11,Fatima Dickinson,F,,2000,7,16,2000-07-16 05:00:00,2001-12-16 05:30:00
+12,,F,Chinese,1980,8,16,1980-08-16 08:00:00,
+13,Cerys Ibarra,F,White British,1985,9,13,1985-09-13 10:05:00,
+14,Marcus Millar,,Other Mixed,1966,10,18,1966-10-18 19:08:00,
+15,Li Qiang-Wu,M,Chinese,1935,6,15,1935-06-15 17:30:00,
+16,Percy Stone,M,Black African,1942,6,7,1942-06-07 21:45:00,
+17,Jenny Kay-Wang,F,Chinese,1981,3,15,1981-03-15 21:46:00,2018-08-11 09:30:00

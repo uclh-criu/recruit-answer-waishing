@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+
+  app-server:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - admission
+
+  app-client:
+    stdin_open: true
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api
+    depends_on:
+      - app-server
+    ports:
+      - "3000:3000"
+    networks:
+      - admission
+
+
+networks:
+  admission:
+
+

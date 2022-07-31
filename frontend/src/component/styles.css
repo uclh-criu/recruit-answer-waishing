@@ -1,0 +1,74 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.content {
+    width: 100%;
+    position: relative;
+}
+.content div {
+    position: relative;
+}
+
+
+
+.display-block {
+    display: block !important;
+}
+
+.display-none {
+    display: none;
+}
+
+
+.searchBox {
+    display: flex;
+    horiz-align: center;
+    vertical-align: bottom;
+}
+
+.searchElement {
+    padding: 10px;
+}
+
+.patient-table{
+    padding :5px;
+    width: 50%;
+    display:inline-block;
+    vertical-align: top;
+    overflow: auto;
+    max-height: 80vh;
+    float: left;
+}
+.admission-table{
+    padding :5px;
+    width: 50%;
+    display:inline-block;
+    vertical-align: bottom;
+    overflow: auto;
+    max-height: 80vh;
+    float: right;
+}
+
+.patient-table th {
+    margin: 10px;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+.admission-table th {
+    margin: 10px;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+
+.searchHeader{
+    text-align: left;
+}
+
+
+
